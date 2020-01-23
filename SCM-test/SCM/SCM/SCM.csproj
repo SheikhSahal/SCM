@@ -4980,6 +4980,14 @@
     <Content Include="Content\Panel\plugins\x-editable\dist\bootstrap3-editable\img\loading.gif" />
     <Content Include="Content\Panel\plugins\x-editable\dist\bootstrap3-editable\js\bootstrap-editable.min.js" />
     <Content Include="Content\Panel\plugins\xml\plugin.js" />
+    <Content Include="Content\Scripts\ai.0.22.9-build00167.js" />
+    <Content Include="Content\Scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="Content\Scripts\bootstrap.js" />
+    <Content Include="Content\Scripts\bootstrap.min.js" />
+    <None Include="Content\Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Content\Scripts\jquery-1.10.2.js" />
+    <Content Include="Content\Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Content\Scripts\modernizr-2.6.2.js" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -5248,6 +5256,7 @@
     <Content Include="Content\Panel\plugins\typeahedjs\dist\nba.json" />
     <Content Include="Content\Panel\plugins\typeahedjs\dist\nfl.json" />
     <Content Include="Content\Panel\plugins\typeahedjs\dist\nhl.json" />
+    <Content Include="Content\Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -5263,6 +5272,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Item_Category.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -5275,6 +5285,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Dashboard_without_script.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -5284,7 +5295,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

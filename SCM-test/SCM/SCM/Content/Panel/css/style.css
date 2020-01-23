@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /*
 0 - 600: Phone
 600 - 900: Tablet portrait
@@ -9,6 +9,15 @@
 The smaller device rules always should write below the bigger device rules
 Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Component
 */
+
+.custom-error{
+    color:red;
+    font-size:5px;
+
+}
+
+
+
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700");
 @import url(../icons/font-awesome/css/font-awesome.min.css);
 @import url(../icons/simple-line-icons/css/simple-line-icons.css);

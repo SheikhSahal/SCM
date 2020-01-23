@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SCM.Models;
 
 namespace SCM.Controllers
 {
@@ -10,6 +11,14 @@ namespace SCM.Controllers
     {
         // GET: Item_Category
         public ActionResult Index()
+        {
+            return View();
+        }
+
+
+
+        [HttpPost]
+        public ActionResult Index(Item_Category ic)
         {
             return View();
         }
