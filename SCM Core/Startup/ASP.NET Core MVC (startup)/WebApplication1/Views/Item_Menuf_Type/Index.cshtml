@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Main_Page_without_Script.cshtml";
+    var Item_Menuf_id = ViewBag.Item_Menuf_id as WebApplication1.Models.Item_Menuf_Type;
+}
+
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-validation">
+                        <form class="form-valide">
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="Mtype_id">
+                                    Item Menu ID <span class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-6">
+                                    <input type="text" disabled class="form-control" id="Mtype_id" name="Item_Category_ID" value="@Item_Menuf_id.Mtype_id">
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label">
+                                    <a href="#">Item Category</a>
+                                </label>
+                                <div class="col-lg-8">
+                                    <label class="css-control css-control-primary" for="Icate_id">
+                                        <input type="text" class="form-control" id="Icate_id" name="Icate_id">
+                                    </label>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="Description">
+                                    Description <span class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="Icate_id" name="Description" placeholder="Your Description..">
+                                </div>
+                                <div class="col-lg-4">
+
+                                </div>
+                                <div class="col-lg-6">
+                                    <span class="custom-error" id="desc-error">Please enter Description</span>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <div class="col-lg-8 ml-auto">
+                                    <button type="button" id="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-8 ml-auto">
+                                    <span class="text-success collapse" id="Save">Saved successfully...!</span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .custom-error {
+        color: red;
+        font-size: 10px;
+        display: none;
+    }
+</style>

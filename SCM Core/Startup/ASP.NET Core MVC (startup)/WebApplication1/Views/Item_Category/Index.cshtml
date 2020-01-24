@@ -1,0 +1,153 @@
+﻿@model WebApplication1.Models.Item_Category
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Main_Page_without_Script.cshtml";
+    var Item_Cate_id = ViewBag.Item_Cate_id as WebApplication1.Models.Item_Category;
+
+}
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-validation">
+                        <form class="form-valide">
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="Item_Category_ID">
+                                    Item Category ID <span class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-6">
+                                    <input type="text" disabled class="form-control" id="Item_Category_ID" name="Item_Category_ID" value="@Item_Cate_id.Item_category_id">
+                                </div>
+
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="Description">
+                                    Description <span class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="Description" name="Description" placeholder="Your Description..">
+                                </div>
+                                <div class="col-lg-4">
+
+                                </div>
+                                <div class="col-lg-6">
+                                    <span class="custom-error" id="desc-error">Please enter Description</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label">
+                                    <a href="#">Status</a>  
+                                </label>
+                                <div class="col-lg-8">
+                                    <label class="css-control css-control-primary css-checkbox" for="Status">
+                                        <input type="checkbox" class="css-control-input" id="Status" name="Status">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-8 ml-auto">
+                                    <button type="button" id="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-8 ml-auto">
+                                    <span class="text-success collapse" id="Save">Saved successfully...!</span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .custom-error {
+        color: red;
+        font-size: 10px;
+        display: none;
+    }
+</style>
+
+
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $('#submit').click(function () {
+
+            var Valid = true;
+
+
+            if (!($('#Description').val().trim() != '')) {
+                Valid = false;
+                $('#desc-error').css('display', 'block');
+            }
+            else {
+                $('#desc-error').css('display', 'none');
+
+            }
+
+            if (Valid) {
+                var Item_cat =
+                {
+
+                    Item_category_id: $('#Item_Category_ID').val().trim(),
+                    Descrption: $('#Description').val().trim(),
+                    Status: $('#Status').prop('checked')
+
+                }
+
+                debugger
+                $.ajax({
+                    type: 'POST',
+                    url: '/Item_Category/Index',
+                    data: { Item_category_id: Item_cat.Item_category_id, Descrption: Item_cat.Descrption, Status: Item_cat.Status },
+                    success: function (response) {
+                        if (response.success) {
+                            getid();
+                        }
+                    }
+
+                });
+
+                function getid() {
+
+                    $.ajax({
+                        type: 'GET',
+                        url: '/Item_Category/GetData',
+                        data: { Item_category_id: 1 },
+                        success: function (response) {
+                            if (response.success) {
+
+                                console.log(response.fetchdata);
+                                $('#Item_Category_ID').val(response.fetchdata);
+                                $('#Description').val(null);
+                                $('#Status').prop("checked", false);
+
+                                $("#Save").fadeIn(3000);
+                                $("#Save").fadeOut(3000);
+                            }
+                        }
+
+                    });
+                }
+
+
+
+
+
+
+
+            }
+
+
+        });
+    });
+</script>
