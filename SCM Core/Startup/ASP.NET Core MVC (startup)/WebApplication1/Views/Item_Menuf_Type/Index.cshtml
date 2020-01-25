@@ -6,6 +6,8 @@
 }
 
 
+
+
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-lg-12">
@@ -18,21 +20,30 @@
                                     Item Menu ID <span class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6">
-                                    <input type="text" disabled class="form-control" id="Mtype_id" name="Item_Category_ID" value="@Item_Menuf_id.Mtype_id">
+                                    <input type="text" disabled class="form-control" id="Mtype_id" name="Mtype_id" value="@Item_Menuf_id.Mtype_id">
                                 </div>
 
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-lg-4 col-form-label">
-                                    <a href="#">Item Category</a>
+                                <label class="col-lg-4 col-form-label" for="Icate_id">
+                                    Item Category <span class="text-danger">*</span>
                                 </label>
-                                <div class="col-lg-8">
-                                    <label class="css-control css-control-primary" for="Icate_id">
-                                        <input type="text" class="form-control" id="Icate_id" name="Icate_id">
-                                    </label>
+
+                                <div class="col-lg-6">
+                                    <select class="form-control" id="Icate_id" name="Icate_id">
+                                        @foreach (var icate_id in ViewBag.Item_Cat_DD as List<WebApplication1.Models.Item_Category>)
+                                        {
+                                            <option value="@icate_id.Item_category_id">@icate_id.Descrption</option>
+                                        }
+
+                                    </select>
                                 </div>
+
+
+
                             </div>
+
 
 
                             <div class="form-group row">
@@ -40,7 +51,7 @@
                                     Description <span class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" id="Icate_id" name="Description" placeholder="Your Description..">
+                                    <input type="text" class="form-control" id="Description" name="Description" placeholder="Your Description..">
                                 </div>
                                 <div class="col-lg-4">
 
@@ -77,3 +88,82 @@
         display: none;
     }
 </style>
+
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $('select').select2();
+
+        $('#submit').click(function () {
+
+            var Valid = true;
+
+
+            if (!($('#Description').val().trim() != '')) {
+                Valid = false;
+                $('#desc-error').css('display', 'block');
+            }
+            else {
+                $('#desc-error').css('display', 'none');
+
+            }
+
+            if (Valid) {
+                var Item_Menu =
+                {
+
+                    Mtype_id: $('#Mtype_id').val().trim(),
+                    Icate_id : $('#Icate_id').val().trim(),
+                    Description : $('#Description').val().trim()
+
+                }
+
+                debugger
+                $.ajax({
+                    type: 'POST',
+                    url: '/Item_Menuf_Type/Index',
+                    data: { Mtype_id: Item_Menu.Mtype_id, Icate_id: Item_Menu.Icate_id, Description: Item_Menu.Description },
+                    success: function (response) {
+                        if (response.success) {
+                            getid();
+                        }
+                    }
+
+                });
+
+                function getid() {
+
+                    $.ajax({
+                        type: 'GET',
+                        url: '/Item_Menuf_Type/GetData',
+                        data: { Item_category_id: 1 },
+                        success: function (response) {
+                            if (response.success) {
+
+                                console.log(response.fetchdata);
+                                $('#Mtype_id').val(response.fetchdata);
+                                $('#Icate_id').val(null);
+                                $('#Description').val(null);
+
+                                $("#Save").fadeIn(3000);
+                                $("#Save").fadeOut(3000);
+                            }
+                        }
+
+                    });
+                }
+
+
+
+
+
+
+
+            }
+
+
+        });
+    });
+</script>

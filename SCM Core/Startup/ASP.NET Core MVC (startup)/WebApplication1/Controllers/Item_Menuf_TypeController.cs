@@ -16,10 +16,38 @@ namespace WebApplication1.Controllers
         {
             Item_Menuf_Type Item_Menuf = database.Item_Menuf_type_id_Generate();
 
-
             ViewBag.Item_Menuf_id = Item_Menuf;
 
+            List<Item_Category> Item_Cat_dropdown = database.ItemCat_dropdown();
+
+            ViewBag.Item_Cat_DD = Item_Cat_dropdown;
+
             return View();
+        }
+
+
+        [HttpPost]
+        public JsonResult Index(Item_Menuf_Type imt)
+        {
+            bool status = false;
+
+
+            Item_Menuf_Type Item_Menuf = database.Item_Menuf_type_id_Generate();
+
+            imt.Mtype_id = Item_Menuf.Mtype_id;
+
+
+            database.Insert_Item_Menuf_Type(imt);
+            status = true;
+
+            return Json(new { success = status });
+        }
+
+        public IActionResult GetData()
+        {
+            Item_Menuf_Type Item_Menuf = database.Item_Menuf_type_id_Generate();
+
+            return Json(new { success = true, fetchdata = Item_Menuf.Mtype_id });
         }
     }
 }

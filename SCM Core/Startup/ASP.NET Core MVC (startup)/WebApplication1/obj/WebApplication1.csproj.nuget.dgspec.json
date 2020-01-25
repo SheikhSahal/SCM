@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sahal.qasim.PREMIER\\Desktop\\SCM Core\\Startup\\ASP.NET Core MVC (startup)\\WebApplication1\\WebApplication1.csproj": {}
+    "C:\\Users\\sahal.qasim.PREMIER\\Desktop\\SCM\\SCM Core\\Startup\\ASP.NET Core MVC (startup)\\WebApplication1\\WebApplication1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sahal.qasim.PREMIER\\Desktop\\SCM Core\\Startup\\ASP.NET Core MVC (startup)\\WebApplication1\\WebApplication1.csproj": {
+    "C:\\Users\\sahal.qasim.PREMIER\\Desktop\\SCM\\SCM Core\\Startup\\ASP.NET Core MVC (startup)\\WebApplication1\\WebApplication1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sahal.qasim.PREMIER\\Desktop\\SCM Core\\Startup\\ASP.NET Core MVC (startup)\\WebApplication1\\WebApplication1.csproj",
+        "projectUniqueName": "C:\\Users\\sahal.qasim.PREMIER\\Desktop\\SCM\\SCM Core\\Startup\\ASP.NET Core MVC (startup)\\WebApplication1\\WebApplication1.csproj",
         "projectName": "WebApplication1",
-        "projectPath": "C:\\Users\\sahal.qasim.PREMIER\\Desktop\\SCM Core\\Startup\\ASP.NET Core MVC (startup)\\WebApplication1\\WebApplication1.csproj",
+        "projectPath": "C:\\Users\\sahal.qasim.PREMIER\\Desktop\\SCM\\SCM Core\\Startup\\ASP.NET Core MVC (startup)\\WebApplication1\\WebApplication1.csproj",
         "packagesPath": "C:\\Users\\sahal.qasim.PREMIER\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sahal.qasim.PREMIER\\Desktop\\SCM Core\\Startup\\ASP.NET Core MVC (startup)\\WebApplication1\\obj\\",
+        "outputPath": "C:\\Users\\sahal.qasim.PREMIER\\Desktop\\SCM\\SCM Core\\Startup\\ASP.NET Core MVC (startup)\\WebApplication1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

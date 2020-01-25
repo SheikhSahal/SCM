@@ -1,0 +1,210 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Main_Page_without_Script.cshtml";
+}
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Suppliers</h4>
+                <div class="basic-form">
+                    <form>
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" id="supp_id" name="supp_id" class="form-control" placeholder="supp_id">
+                            </div>
+                            <div class="col">
+                                <input type="text" id="supp_code" name="supp_code" class="form-control" placeholder="supp code">
+                            </div>
+                            <div class="col">
+                                <input type="text" id="supplier" name="supplier" class="form-control" placeholder="supplier">
+                            </div>
+                            <div class="col">
+                                <input type="text" id="contact_person" name="contact_person" class="form-control" placeholder="Contact Person">
+                            </div>
+                            <div class="col">
+                                <input type="text" id="oth_contact_person" name="oth_contact_person" class="form-control" placeholder="other Contact Person">
+                            </div>
+                            <div class="col">
+                                <input type="text" id="cnic" name="cnic" class="form-control" placeholder="CNIC">
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" id="supp_type" name="supp_type" class="form-control" placeholder="Supp Type">
+                            </div>
+                            <div class="col">
+                                <input type="text" id="supp_ntn" name="supp_ntn" class="form-control" placeholder="NTN">
+                            </div>
+                            <div class="col">
+                                <input type="text" id="supp_email" name="supp_email" class="form-control" placeholder="Email">
+                            </div>
+                            <div class="col">
+                                <input type="text" id="supp_fax" name="supp_fax" class="form-control" placeholder="FAX">
+                            </div>
+                            <div class="col">
+                                <input type="text" id="contact_office" name="contact_office" class="form-control" placeholder="Contact Office">
+                            </div>
+                            <div class="col">
+                                <input type="text" id="mobile_no" name="mobile_no" class="form-control" placeholder="Mobile No..">
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" id="regions" name="regions" class="form-control" placeholder="Regions">
+                            </div>
+                            <div class="col">
+                                <input type="text" id="country" name="country" class="form-control" placeholder="Country">
+                            </div>
+                            <div class="col">
+                                <input type="text" id="province" name="province" class="form-control" placeholder="Province">
+                            </div>
+                            <div class="col">
+                                <input type="text" id="city" name="city" class="form-control" placeholder="City">
+                            </div>
+                            <div class="col">
+                                <input type="text" id="area" name="area" class="form-control" placeholder="Area">
+                            </div>
+                            <div class="col">
+                                <input type="text" id="supp_address" name="supp_address" class="form-control" placeholder="Address">
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" id="oth_mobile_no" name="oth_mobile_no" class="form-control" placeholder="other mobile No">
+                            </div>
+                            <div class="col">
+                                <input type="text" id="invoice_currency" name="invoice_currency" class="form-control" placeholder="invoice Currency">
+                            </div>
+                            <div class="col">
+                                <input type="text" id="pay_currency" name="pay_currency" class="form-control" placeholder="Pay Currency">
+                            </div>
+                            <div class="col">
+                                <input type="text" id="supp_status" name="supp_status" class="form-control" placeholder="Status">
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group row">
+                            <div class="col-lg-8">
+                                <button type="button" id="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $('#submit').click(function () {
+
+            var Valid = true;
+
+
+            //if (!($('#Description').val().trim() != '')) {
+            //    Valid = false;
+            //    $('#desc-error').css('display', 'block');
+            //}
+            //else {
+            //    $('#desc-error').css('display', 'none');
+
+            //}
+
+            if (Valid) {
+                var Supplier_Data =
+                {
+
+                    supp_id: $('#supp_id').val().trim(),
+                    supp_code: $('#supp_code').val().trim(),
+                    supplier: $('#supplier').val().trim(),
+                    contact_person: $('#contact_person').val().trim(),
+                    oth_contact_person: $('#oth_contact_person').val().trim(),
+                    supp_type: $('#supp_type').val().trim(),
+                    supp_ntn: $('#supp_ntn').val().trim(),
+                    supp_email: $('#supp_email').val().trim(),
+                    supp_fax: $('#supp_fax').val().trim(),
+                    contact_office: $('#contact_office').val().trim(),
+                    mobile_no: $('#mobile_no').val().trim(),
+                    oth_mobile_no: $('#oth_mobile_no').val().trim(),
+                    cnic: $('#cnic').val().trim(),
+                    regions: $('#regions').val().trim(),
+                    country: $('#country').val().trim(),
+                    province: $('#province').val().trim(),
+                    city: $('#city').val().trim(),
+                    area: $('#area').val().trim(),
+                    supp_address: $('#supp_address').val().trim(),
+                    invoice_currency: $('#invoice_currency').val().trim(),
+                    pay_currency: $('#pay_currency').val().trim(),
+                    supp_status: $('#supp_status').val().trim()
+
+                }
+
+                debugger
+                $.ajax({
+                    type: 'POST',
+                    url: '/Scm_Supplier/Index',
+                    data: {
+                        supp_id: Supplier_Data.supp_id,
+                        supp_code: Supplier_Data.supp_code,
+                        supplier: Supplier_Data.supplier,
+                        contact_person: Supplier_Data.contact_person,
+                        oth_contact_person: Supplier_Data.oth_contact_person,
+                        supp_type: Supplier_Data.supp_type,
+                        supp_ntn: Supplier_Data.supp_ntn,
+                        supp_email: Supplier_Data.supp_email,
+                        supp_fax: Supplier_Data.supp_fax,
+                        contact_office: Supplier_Data.contact_office,
+                        mobile_no: Supplier_Data.mobile_no,
+                        oth_mobile_no: Supplier_Data.oth_mobile_no,
+                        cnic: Supplier_Data.cnic,
+                        regions: Supplier_Data.regions,
+                        country: Supplier_Data.province,
+                        province: Supplier_Data.province,
+                        city: Supplier_Data.city,
+                        area: Supplier_Data.area,
+                        supp_address: Supplier_Data.supp_address,
+                        invoice_currency: Supplier_Data.invoice_currency,
+                        pay_currency: Supplier_Data.pay_currency,
+                        supp_status: Supplier_Data.supp_status
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            getid();
+                        }
+                    }
+
+                });
+
+                function getid() {
+
+                    $.ajax({
+                        type: 'GET',
+                        url: '/Item_Menuf_Type/GetData',
+                        data: { Item_category_id: 1 },
+                        success: function (response) {
+                            if (response.success) {
+
+                                console.log(response.fetchdata);
+                                $('#Mtype_id').val(response.fetchdata);
+                                $('#Icate_id').val(null);
+                                $('#Description').val(null);
+
+                                $("#Save").fadeIn(3000);
+                                $("#Save").fadeOut(3000);
+                            }
+                        }
+
+                    });
+                }
+            }
+
+
+        });
+    });
+</script>
