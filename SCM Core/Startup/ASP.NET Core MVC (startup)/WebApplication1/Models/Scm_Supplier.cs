@@ -30,14 +30,11 @@ namespace WebApplication1.Models
         public string SUPP_ADDRESS { get; set; }
         public string INVOICE_CURRENCY { get; set; }
         public string PAY_CURRENCY { get; set; }
-        public string Supp_STATUS { get; set; }
+        public bool Supp_STATUS { get; set; }
 
         //Details
 
-        public int Supp_ACC_id { get; set; }
-        public string SUPP_Acc_title { get; set; }
-        public string SUPP_Bank { get; set; }
-        public string Acc_no { get; set; }
+      
 
     }
 }

@@ -7,6 +7,6 @@ namespace WebApplication1
 {
     static public class DBConnection
     {
-        static public string connectString = @"Server=192.168.10.27; Database=CRM; UID=sa; PWD=Optiplex@242244;";
+        static public string connectString = @"Server=192.168.11.27; Database=CRM; UID=sa; PWD=Optiplex@242244;";
     }
 }

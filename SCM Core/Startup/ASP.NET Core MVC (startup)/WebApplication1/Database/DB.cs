@@ -228,6 +228,7 @@ namespace WebApplication1.Database
         }
 
 
+       
         public List<Item_Sub_Cateogory> Item_Sub_Cat_dropdown()
         {
             List<Item_Sub_Cateogory> DBase = new List<Item_Sub_Cateogory>();
@@ -252,8 +253,29 @@ namespace WebApplication1.Database
             return DBase;
         }
 
+        //Set_Generic End
 
-        public void Insert_SCM_Supplier(Scm_Supplier ss)
+
+        public Scm_Supplier SCM_Supplier_id_Generate()
+        {
+            Scm_Supplier ads = new Scm_Supplier();
+            SqlConnection con = new SqlConnection(connectString);
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "select isnull(max(g.SUPP_id),0)+1 SUPP_id from SCM_SUPPLIER g";
+            cmd.Connection = con;
+            con.Open();
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            reader.Read();
+
+            ads.SUPP_id = Convert.ToInt16(reader["SUPP_id"]);
+
+            reader.Close();
+            return ads;
+        }
+
+        public void Insert_SCM_Supplier(Scm_Supplier ss, string R_Status)
         {
 
             using (SqlConnection conn = new SqlConnection(connectString))
@@ -267,6 +289,25 @@ namespace WebApplication1.Database
                     cmd.Parameters.AddWithValue("@SUPP_CODE", ss.SUPP_CODE);
                     cmd.Parameters.AddWithValue("@SUPPLIER", ss.SUPPLIER);
                     cmd.Parameters.AddWithValue("@Contact_PERSON", ss.Contact_PERSON);
+                    cmd.Parameters.AddWithValue("@Oth_Contact_PERSON", ss.Oth_Contact_PERSON);
+                    cmd.Parameters.AddWithValue("@SUPP_TYPE", ss.SUPP_TYPE);
+                    cmd.Parameters.AddWithValue("@SUPP_NTN", ss.SUPP_NTN);
+                    cmd.Parameters.AddWithValue("@SUPP_EMAIL", ss.SUPP_EMAIL);
+                    cmd.Parameters.AddWithValue("@SUPP_FAX", ss.SUPP_FAX);
+                    cmd.Parameters.AddWithValue("@Contact_Office", ss.Contact_Office);
+                    cmd.Parameters.AddWithValue("@MOBILE_no", ss.MOBILE_no);
+                    cmd.Parameters.AddWithValue("@Oth_MOBILE_no", ss.Oth_MOBILE_no);
+                    cmd.Parameters.AddWithValue("@CNIC", ss.CNIC);
+                    cmd.Parameters.AddWithValue("@Regions", ss.Regions);
+                    cmd.Parameters.AddWithValue("@COUNTRY", ss.COUNTRY);
+                    cmd.Parameters.AddWithValue("@PROVINCE", ss.PROVINCE);
+                    cmd.Parameters.AddWithValue("@CITY", ss.CITY);
+                    cmd.Parameters.AddWithValue("@Area", ss.Area);
+                    cmd.Parameters.AddWithValue("@SUPP_ADDRESS", ss.SUPP_ADDRESS);
+                    cmd.Parameters.AddWithValue("@INVOICE_CURRENCY", ss.INVOICE_CURRENCY);
+                    cmd.Parameters.AddWithValue("@PAY_CURRENCY", ss.PAY_CURRENCY);
+                    cmd.Parameters.AddWithValue("@Supp_STATUS", R_Status);
+
 
 
                     cmd.ExecuteNonQuery();
