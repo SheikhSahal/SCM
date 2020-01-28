@@ -34,7 +34,7 @@ namespace WebApplication1.Models
 
         //Details
 
-      
+        public virtual ICollection<Scm_Supplier_details> Scm_Supplier_details { get; set; }
 
     }
 }

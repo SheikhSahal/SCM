@@ -22,8 +22,9 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(Scm_Supplier ss, Scm_Supplier_details ssd)
+        public IActionResult Index(Scm_Supplier ss)
         {
+            bool status = false;
             string R_Status = null;
 
             if (ss.Supp_STATUS == true)
@@ -40,7 +41,20 @@ namespace WebApplication1.Controllers
 
             database.Insert_SCM_Supplier(ss, R_Status);
 
-            return View();
+            foreach(var details_record in ss.Scm_Supplier_details)
+            {
+                database.Insert_SCM_Supplier_Details(details_record,ss.SUPP_id);
+            }
+            status = true;
+
+            return Json(new { success = status });
+        }
+
+        public IActionResult GetData()
+        {
+            Scm_Supplier SCM_supp_id = database.SCM_Supplier_id_Generate();
+
+            return Json(new { success = true, fetchdata = SCM_supp_id.SUPP_id });
         }
     }
 }

@@ -314,5 +314,29 @@ namespace WebApplication1.Database
                 }
             }
         }
+
+
+        public void Insert_SCM_Supplier_Details(Scm_Supplier_details ssd, int supp_id)
+        {
+
+            using (SqlConnection conn = new SqlConnection(connectString))
+            {
+
+                using (SqlCommand cmd = new SqlCommand("insert into scm_supplier_acc_detail values (@Supp_acc_id,@supp_id,'account_title', @supp_bank,@acc_no)", conn))
+                {
+
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@supp_id", supp_id);
+                    cmd.Parameters.AddWithValue("@Supp_acc_id", ssd.Supp_ACC_id);
+                    cmd.Parameters.AddWithValue("@supp_bank", ssd.SUPP_Bank);
+                    cmd.Parameters.AddWithValue("@acc_no", ssd.Acc_no);
+                    
+
+
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

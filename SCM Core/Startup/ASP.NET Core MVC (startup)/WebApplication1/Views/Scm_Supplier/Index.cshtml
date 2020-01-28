@@ -16,20 +16,25 @@
                         <div class="col">
                             <input type="text" disabled id="supp_id" name="supp_id" class="form-control" placeholder="supp_id" value="@SCM_supp_id.SUPP_id">
                         </div>
-                        <div class="col">
+                        <div class="col supp_code">
                             <input type="text" id="supp_code" name="supp_code" class="form-control" placeholder="supp code">
+                            <span class="custom-error">Please Enter Supplier code</span>
                         </div>
-                        <div class="col">
+                        <div class="col supplier">
                             <input type="text" id="supplier" name="supplier" class="form-control" placeholder="supplier">
+                            <span class="custom-error">Please Enter Supplier</span>
                         </div>
-                        <div class="col">
+                        <div class="col contact_person">
                             <input type="text" id="contact_person" name="contact_person" class="form-control" placeholder="Contact Person">
+                            <span class="custom-error">Please Enter Contact Person</span>
                         </div>
-                        <div class="col">
+                        <div class="col oth_contact_person">
                             <input type="text" id="oth_contact_person" name="oth_contact_person" class="form-control" placeholder="other Contact Person">
+                            <span class="custom-error">Please Enter Other contact</span>
                         </div>
-                        <div class="col">
+                        <div class="col cnic">
                             <input type="text" id="cnic" name="cnic" class="form-control" placeholder="CNIC">
+                            <span class="custom-error">Please Enter CNIC</span>
                         </div>
                     </div>
                     <br />
@@ -40,8 +45,9 @@
                         <div class="col">
                             <input type="text" id="supp_ntn" name="supp_ntn" class="form-control" placeholder="NTN">
                         </div>
-                        <div class="col">
+                        <div class="col supp_email">
                             <input type="text" id="supp_email" name="supp_email" class="form-control" placeholder="Email">
+                            <span class="custom-error">Please Enter E-mail</span>
                         </div>
                         <div class="col">
                             <input type="text" id="supp_fax" name="supp_fax" class="form-control" placeholder="FAX">
@@ -100,14 +106,12 @@
                             <input type="hidden" id="SUPP_id_d" name="SUPP_id_d" class="form-control" placeholder="Supplier id">
                         </div>
                         <div class="col">
-                            <input type="text" id="sno" name="sno" class="form-control" placeholder="S.No">
+                            <input type="text" disabled id="sno" name="sno" class="form-control" placeholder="S.No">
                         </div>
                         <div class="col">
                             <input type="text" id="Supp_ACC_id" name="Supp_ACC_id" class="form-control" placeholder="Supplier Account">
                         </div>
-                        @*<div class="col">
-                                <input type="text" id="SUPP_Acc_title" name="SUPP_Acc_title" class="form-control" placeholder="Account title">
-                            </div>*@
+
                         <div class="col">
                             <input type="text" id="SUPP_Bank" name="SUPP_Bank" class="form-control" placeholder="Supplier Bank">
                             <span class="custom-error supplier-bank">Please Enter Supplier Bank</span>
@@ -124,24 +128,17 @@
                     <br />
 
                     <div class="row" id="details">
-                        @*<table id="example" class="display">
-                                <thead>
-                                    <tr>
-                                        <th>S.No</th>
-                                        <th>Item&nbsp;Name</th>
-                                        <th>Quantity</th>
-                                        <th>Rate</th>
-                                        <th>Amount</th>
-                                        <th>&nbsp;</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="details">
-                                </tbody>
-                            </table>*@
+
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-8">
                             <button type="button" id="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-lg-8 ml-auto">
+                            <span class="text-success collapse" id="Save">Saved successfully...!</span>
                         </div>
                     </div>
                 </form>
@@ -149,6 +146,7 @@
         </div>
     </div>
 </div>
+
 
 <style>
     .custom-error {
@@ -194,14 +192,14 @@
                 //var Amount = $('#Amount').val().trim();
 
                 var details_value = `
-                                     <div class="row" style= "margin-bottom: 10px;">
+                                     <div class="row" style= "margin-bottom: 10px; margin-left:5px;">
 
                                        <div class="col collapse">
-                                            <input type="text" class="form-control" value= `+ supplier_d_id + `>
+                                            <input type="text" disabled class="form-control" value= `+ supplier_d_id + `>
                                        </div>
 
                                        <div class="col">
-                                            <input type="text" class="form-control" value= `+ Sno + `>
+                                            <input type="text" disabled class="form-control" value= `+ Sno + `>
                                        </div>
                                        <div class="col">
                                             <input type="text" class="form-control Supp_ACC_id" value= `+ Supp_ACC_id + `>
@@ -242,34 +240,85 @@
             var Valid = true;
 
 
-            //if (!($('#Description').val().trim() != '')) {
-            //    Valid = false;
-            //    $('#desc-error').css('display', 'block');
-            //}
-            //else {
-            //    $('#desc-error').css('display', 'none');
+            if (!($('#supp_code').val().trim() != '')) {
+                Valid = false;
+                $('.supp_code .custom-error').css('display', 'block');
+            }
+            else {
+                $('.supp_code .custom-error').css('display', 'none');
 
-            //}
+            }
+
+
+            if (!($('#supplier').val().trim() != '')) {
+                Valid = false;
+                $('.supplier .custom-error').css('display', 'block');
+            }
+            else {
+                $('.supplier .custom-error').css('display', 'none');
+
+            }
+
+
+            if (!($('#contact_person').val().trim() != '')) {
+                Valid = false;
+                $('.contact_person .custom-error').css('display', 'block');
+            }
+            else {
+                $('.contact_person .custom-error').css('display', 'none');
+
+            }
+
+
+            if (!($('#oth_contact_person').val().trim() != '')) {
+                Valid = false;
+                $('.oth_contact_person .custom-error').css('display', 'block');
+            }
+            else {
+                $('.oth_contact_person .custom-error').css('display', 'none');
+
+            }
+
+
+
+            if (!($('#cnic').val().trim() != '')) {
+                Valid = false;
+                $('.cnic .custom-error').css('display', 'block');
+            }
+            else {
+                $('.cnic .custom-error').css('display', 'none');
+
+            }
+
+
+            if (!($('#supp_email').val().trim() != '')) {
+                Valid = false;
+                $('.supp_email .custom-error').css('display', 'block');
+            }
+            else {
+                $('.supp_email .custom-error').css('display', 'none');
+
+            }
 
             var isAllvalid = true;
             var list = [];
             var errorItemCount = 0;
-           $('#details div').each(function (index, ele) {
+            $('#details div').each(function (index, ele) {
                 if (
                     //$('select.product', this).val() == "0" ||
                     $('.Supp_ACC_id', this).val() == "" ||
                     isNaN($('.Supp_ACC_id', this).val()) ||
                     $('.SUPP_Bank', this).val() == "" ||
                     $('.Acc_no', this).val() == "" ||
-                    isNaN($('.Acc_no', this).val()) 
-                    ) {
+                    isNaN($('.Acc_no', this).val())
+                ) {
                     errorItemCount++;
                     $(this).addClass('error');
                 } else {
                     var orderItem = {
-                       Item_Name: $('.Supp_ACC_id', this).val(),
-                        Quantity: $('.SUPP_Bank', this).val(),
-                        Rate: $('.Acc_no', this).val()
+                        Supp_ACC_id: $('.Supp_ACC_id', this).val(),
+                        SUPP_Bank: $('.SUPP_Bank', this).val(),
+                        Acc_no: $('.Acc_no', this).val()
                     }
                     JSON.stringify(orderItem)
                     list.push(orderItem);
@@ -309,7 +358,7 @@
 
                     //details
 
-                 //   Scm_Supplier_details: list
+                    Scm_Supplier_details: list
 
                 }
 
@@ -317,7 +366,7 @@
                 $.ajax({
                     type: 'POST',
                     url: '/Scm_Supplier/Index',
-                    data: JSON.stringify({
+                    data: {
                         supp_id: Supplier_Data.supp_id,
                         supp_code: Supplier_Data.supp_code,
                         supplier: Supplier_Data.supplier,
@@ -339,9 +388,11 @@
                         supp_address: Supplier_Data.supp_address,
                         invoice_currency: Supplier_Data.invoice_currency,
                         pay_currency: Supplier_Data.pay_currency,
-                        supp_status: Supplier_Data.supp_status
-                       // Scm_Supplier_details: Supplier_Data.Scm_Supplier_details
-                    }),
+                        supp_status: Supplier_Data.supp_status,
+
+
+                        Scm_Supplier_details: Supplier_Data.Scm_Supplier_details
+                    },
                     success: function (response) {
                         if (response.success) {
                             getid();
@@ -354,15 +405,43 @@
 
                     $.ajax({
                         type: 'GET',
-                        url: '/Item_Menuf_Type/GetData',
+                        url: '/Scm_Supplier/GetData',
                         data: { Item_category_id: 1 },
                         success: function (response) {
                             if (response.success) {
 
                                 console.log(response.fetchdata);
-                                $('#Mtype_id').val(response.fetchdata);
-                                $('#Icate_id').val(null);
-                                $('#Description').val(null);
+                                $('#supp_id').val(response.fetchdata);
+                                $('#supp_code').val(null);
+                                $('#supplier').val(null);
+                                $('#contact_person').val(null);
+                                $('#oth_contact_person').val(null);
+                                $('#cnic').val(null);
+                                $('#supp_type').val(null);
+                                $('#supp_ntn').val(null);
+                                $('#supp_email').val(null);
+                                $('#supp_fax').val(null);
+                                $('#contact_office').val(null);
+                                $('#mobile_no').val(null);
+                                $('#regions').val(null);
+                                $('#country').val(null);
+                                $('#province').val(null);
+                                $('#city').val(null);
+                                $('#area').val(null);
+                                $('#supp_address').val(null);
+                                $('#oth_mobile_no').val(null);
+                                $('#invoice_currency').val(null);
+                                $('#pay_currency').val(null);
+                                $('#supp_status').prop("checked", false);
+
+
+                                $('#Supp_ACC_id').val(null);
+                                $('#SUPP_Bank').val(null);
+                                $('#Acc_no').val(null);
+
+                                $('#sno').val(1);
+
+                                $('.Supp_ACC_id').remove();
 
                                 $("#Save").fadeIn(3000);
                                 $("#Save").fadeOut(3000);
