@@ -1,0 +1,141 @@
+SCM_Organization
+-----------
+Orag_id(pk)
+Country_id
+State_id
+city_id
+Area_id
+Orag_name
+Orag_code (rendam genrate code)
+Orag_logo
+contact_no
+contact_person
+postal_address
+Orag_email (forword Orag_code)
+Orag_url
+campus_allow (Only for pelatium registration,
+Default create campus same corporate name, if allow YES then create campus manualy and allow NO then auto create campus same corporate name)
+Tran_Date
+
+
+SCM_Campus
+---------
+Campus_Id(pk)
+Orag_id
+country_id
+State_id
+city_id
+Area_id
+camp_name
+contact_no
+contact_person
+postal_address
+Camp_email
+Tran_Date	( DateTime )
+
+
+SCM_Unit_Setup
+----------
+Unit_Id
+Unit_Description
+Status
+Unit_Val
+
+
+Department_Setup
+----------------
+Dept_Id (pk)
+Campus_Id(fk)
+Department
+Dept_location
+
+
+Store_Setup
+-----------------
+Store_Id (pk)
+Campus_id (fk)
+Description
+Short_Description
+Store_Type (G = Genral Store, M = Medician Store, F = Food Store etc)
+Status
+Dept_Id(fk)
+
+
+---------------------------------------
+create table SCM_ITEM_SETUP
+(
+  Item_id		     number (pk)
+  ITEM_CODE          VARCHAR2(10) not null,
+  Icate_id          number, 
+  Isubcate_id       number, 
+  ITEM_NAME         VARCHAR2(500),
+  Generic_id	    number
+  Menuf_Id	    number;
+  Mtype_id	    number;
+  ITEM_Purchase_UNIT number, ---Unit_id
+  ITEM_Consum_UNIT   number, ---Unit_id
+  UNIT_OF_MEASURE    VARCHAR2(10),
+  ITEM_ORDER_qty     number,
+  ITEM_TRADE_PRICE   NUMBER(12,4),
+  ITEM_RETAIL_PRICE  NUMBER(12,4),
+  ITEM_POTENCY       VARCHAR2(25),
+  ITEM_FIX_ASSET     VARCHAR2(1) default 'N',	
+  ITEM_LOCAL         VARCHAR2(1) default 'Y',
+  ITEM_EXPIRY        VARCHAR2(1) default 'N',
+  AUTHORIZATION      VARCHAR2(1) default 'N',
+  CONSIGMENT_ITEM    VARCHAR2(1) default 'N',
+  TENDER_ITEM        VARCHAR2(1) default 'N',
+  INVENTORY_ITEM     VARCHAR2(1) default 'Y',
+  ANTIBIOTIC_FLAG    VARCHAR2(1) default 'N',
+  DURATION_REQUIRED  VARCHAR2(1) default 'N',
+  FEVRATE_FLAGE      VARCHAR2(1) default 'N',
+  FORMERLY_ITEM      VARCHAR2(1) default 'N',
+  COSTING_ENABLE     VARCHAR2(1) default 'N',
+  STOCK_ABLE         VARCHAR2(1) default 'N',
+  INVOICE_ENABLE     VARCHAR2(1) default 'Y',
+  CHECK_PAR_LEVEL    VARCHAR2(1) default 'N',
+  STATUS             VARCHAR2(1) default 'Y',
+  SAFETY_STOCK       NUMBER,
+  LEAD_TIME          NUMBER,
+  LD_TIME            NUMBER,
+  ITEM_POTENCY_UNIT  VARCHAR2(5),
+  ITEM_MULT_FACTOR   NUMBER(10,6),
+  IDEAL_DOSAGE       VARCHAR2(30),
+  DEMAND             VARCHAR2(20),
+  SUPPLY             VARCHAR2(20),
+  ITEM_SPECIFICATION VARCHAR2(500), 
+
+)
+
+
+-------------------------------------------
+create table SCM_ITEM_PRICE_subCate
+(
+  tran_id	  number (pk),
+  Isubcate_id	  number (fk),
+  Status	  VARCHAR2(1)
+)
+
+
+-------------------------------------------
+create table SCM_ITEM_fix_PRICE
+(
+  Price_id	  number (pk),
+  Item_id	  number (fk),
+  efactive_DATE        DATE,
+  RATE            VARCHAR2(20),
+  APPROVE_BY      VARCHAR2(6),
+  APPROVE_REMARKS VARCHAR2(200),
+  Status	  VARCHAR2(1),
+  Campus_id	  number (fk),
+  Store_Id	  number(fk)
+)
+
+-------------------------------------------
+create table SCM_ITEM_SUPPLIER
+(
+  ISupplier_id       number(pk),
+  Item_id	     number (fk),
+  SUPPLIER_CODE     VARCHAR2(8)(fk)
+  Campus_id	  number (fk),
+  Store_Id	  number(fk)
